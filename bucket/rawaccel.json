@@ -1,0 +1,24 @@
+{
+    "version": "1.7.1",
+    "description": "allows for the acceleration of mouse input in the raw input stream.",
+    "homepage": "https://github.com/RawAccelOfficial/rawaccel",
+    "license": "MIT",
+    "url": "https://github.com/RawAccelOfficial/rawaccel/releases/download/v1.7.1/RawAccel_v1.7.1.zip",
+    "hash": "770fe3ae0919ca3c4d412f58c985eb27f5434decad809f7e8206de4e8852eec4",
+    "extract_dir": "RawAccel",
+    "pre_install": "if (!(Test-Path \"$persist_dir\\settings.json\")) { New-Item \"$dir\\settings.json\" | Out-Null }",
+    "installer": {
+        "script": "Start-Process -FilePath \"$dir\\installer.exe\" -Wait"
+    },
+    "uninstaller": {
+        "script": "Start-Process -FilePath \"$dir\\uninstaller.exe\" -Wait"
+    },
+    "persist": ["settings.json"],
+    "shortcuts": [["rawaccel.exe", "Raw Accel"]],
+    "checkver": {
+        "github": "https://github.com/RawAccelOfficial/rawaccel"
+    },
+    "autoupdate": {
+        "url": "https://github.com/RawAccelOfficial/rawaccel/releases/download/v$version/RawAccel_v$version.zip"
+    }
+}

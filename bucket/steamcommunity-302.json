@@ -6,42 +6,16 @@
     "url": "https://www.dogfight360.com/blog/wp-content/uploads/2026/02/steamcommunity_302_AMD64_V14.0.02.zip",
     "hash": "d911105fbf56a6cfcf0322e3feeb97a65a005bb9bfb2021aade45e8a11f9a8e8",
     "extract_dir": "Steamcommunity_302",
-    "##": [
-        "pac_user.txt",
+    "pre_install": [
+        "$manifest.persist | ForEach-Object {",
+        "    if (!(Test-Path \"$persist_dir\\$_\")) { New-Item \"$dir\\$_\"| Out-Null }",
+        "}"
+    ],
+    "persist": [
         "S302.ini",
-        "S302_rules.ini",
-        "S302.log",
+        "pac_user.txt",
         "dns_blacklist.txt",
-        "dns_hosts.txt",
-        "steamcommunity.crt",
-        "steamcommunity.csr",
-        "steamcommunity.key",
-        "steamcommunityCA.crl",
-        "steamcommunityCA.key",
-        "steamcommunityCA.pem"
-    ],
-    "post_install": [
-        "New-Item $persist_dir -ItemType Directory -Force | Out-Null",
-        "$manifest.'##' | ForEach-Object {",
-        "    $src = Join-Path $persist_dir $_",
-        "    if (Test-Path $src -PathType Leaf) {",
-        "        Copy-Item $src $dir -Force",
-        "    }",
-        "}"
-    ],
-    "pre_uninstall": [
-        "@('Steamcommunity_302', 'steamcommunity_302.cli', 'steamcommunity_302.caddy') | ForEach-Object {",
-        "    if (Get-Process -Name $_ -ErrorAction SilentlyContinue) {",
-        "        throw '请先关闭服务和UI再进行卸载.'",
-        "    }",
-        "}",
-        "New-Item $persist_dir -ItemType Directory -Force | Out-Null",
-        "$manifest.'##' | ForEach-Object {",
-        "    $src = Join-Path $dir $_",
-        "    if (Test-Path $src -PathType Leaf) {",
-        "        Copy-Item $src $persist_dir -Force",
-        "    }",
-        "}"
+        "dns_hosts.txt"
     ],
     "shortcuts": [["steamcommunity_302.exe", "SteamCommunity 302"]],
     "checkver": {
