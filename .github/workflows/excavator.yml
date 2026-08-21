@@ -18,7 +18,7 @@ jobs:
           ref: main
 
       - name: Excavate
-        uses: ScoopInstaller/GithubActions@6f888fbdd6bc1cda256c7e9f649be9d305284e7b # main
+        uses: ScoopInstaller/GithubActions@8720dc58b31abbfe1f0b9c21f5fff6ba6dd96dd3 # main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SKIP_UPDATED: 1
