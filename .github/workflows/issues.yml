@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Issue Handler
-        uses: ScoopInstaller/GithubActions@920bb269a3386092e292435854826e77437792ef # main
+        uses: ScoopInstaller/GithubActions@3175e60834b559af74cde2bb33f538a223e03de1 # main
         if: github.event.action == 'opened' || (github.event.action == 'labeled' && contains(github.event.issue.labels.*.name, 'verify'))
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
