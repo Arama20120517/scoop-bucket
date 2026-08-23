@@ -18,6 +18,6 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Pull Request Handler
-        uses: ScoopInstaller/GithubActions@3a5a517f545514bd6f63ecde02ebf1640206d0d9 # main
+        uses: ScoopInstaller/GithubActions@ea715fbedf7b43971cfb438ee1b9935e252396a6 # main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
