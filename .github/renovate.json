@@ -1,52 +1,5 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-        // https://docs.renovatebot.com/presets-config/#configbest-practices
-        "config:recommended",
-        ":configMigration",
-        "abandonments:recommended",
-
-        // https://docs.renovatebot.com/presets-helpers/#helperspingithubactiondigeststosemver
-        "helpers:pinGitHubActionDigestsToSemver"
-    ],
-    "enabledManagers": ["github-actions"],
-
-    "separateMajorMinor": false,
-    "separateMultipleMinor": false,
-    "separateMinorPatch": false,
-
-    "semanticCommits": "enabled",
-    "rebaseWhen": "behind-base-branch",
-    "ignoreTests": true,
-
-    "commitHourlyLimit": 0,
-    "prConcurrentLimit": 0,
-    "prHourlyLimit": 0,
-    "prCreation": "immediate",
-
-    "suppressNotifications": ["prEditedNotification"],
-
-    "schedule": ["* * * * *"],
-    "timezone": "Asia/Shanghai",
-
-    "automerge": true,
-    "automergeSchedule": ["* * * * *"],
-    "automergeType": "pr",
-    "automergeStrategy": "rebase",
-
-    "rangeStrategy": "pin",
-    "pinDigests": true,
-
-    "lockFileMaintenance": {
-        "enabled": true,
-        "automerge": true,
-        "schedule": ["* 0 * * *"]
-    },
-
-    "vulnerabilityAlerts": {
-        "enabled": true,
-        "automerge": true,
-        "schedule": ["* 0 * * *"],
-        "vulnerabilityFixStrategy": "highest"
-    }
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>Arama20120517/renovate-config"],
+  "enabledManagers": ["github-actions"]
 }
