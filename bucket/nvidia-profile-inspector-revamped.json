@@ -10,14 +10,13 @@
         }
     },
     "extract_dir": "NVPI Revamped App",
-    "shortcuts": [
-        [
-            "NVPI-R.exe",
-            "NVPI-R App"
-        ]
-    ],
+    "shortcuts": [["NVPI-R.exe", "NVPI-R App"]],
     "checkver": "github",
     "autoupdate": {
-        "url": "https://github.com/xHybred/NvidiaProfileInspectorRevamped/releases/download/v$version/NVPI-R.zip"
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/xHybred/NvidiaProfileInspectorRevamped/releases/download/v$version/NVPI-R.zip"
+            }
+        }
     }
 }

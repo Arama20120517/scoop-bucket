@@ -40,16 +40,8 @@
         "Remove-Item -Path \"$env:LOCALAPPDATA\\Wand\" -Recurse -Force",
         "Remove-Item -Path \"$persist_dir\\local_data\\app-$($manifest.version)\" -Recurse -Force"
     ],
-    "shortcuts": [
-        [
-            "Wand.exe",
-            "Wand"
-        ]
-    ],
-    "persist": [
-        "local_data",
-        "roaming_data"
-    ],
+    "persist": ["local_data", "roaming_data"],
+    "shortcuts": [["Wand.exe", "Wand"]],
     "checkver": {
         "script": [
             "$resp = Invoke-WebRequest -Uri 'https://api.wemod.com/client/channels/stable/RELEASES'",

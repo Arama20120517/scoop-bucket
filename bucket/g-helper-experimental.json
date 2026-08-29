@@ -21,19 +21,10 @@
         "}",
         "New-Item -ItemType Junction -Path $env:APPDATA\\GHelper -Target $persist_dir\\data | Out-Null"
     ],
-    "uninstaller": {
-        "script": "Remove-Item $env:APPDATA\\GHelper -Force -Recurse"
-    },
-    "shortcuts": [
-        [
-            "GHelper.exe",
-            "G-Helper (Experimental)"
-        ]
-    ],
+    "post_uninstall": "Remove-Item $env:APPDATA\\GHelper -Force -Recurse",
     "persist": "data",
-    "checkver": {
-        "github": "https://github.com/seerge/g-helper-experimental-release"
-    },
+    "shortcuts": [["GHelper.exe", "G-Helper (Experimental)"]],
+    "checkver": "github",
     "autoupdate": {
         "architecture": {
             "64bit": {

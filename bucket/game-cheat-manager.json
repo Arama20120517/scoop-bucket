@@ -33,19 +33,9 @@
         "Remove-Item \"$env:APPDATA\\GCM Settings\" -Force -Recurse",
         "Remove-Item \"$env:APPDATA\\GCM Trainers\" -Force -Recurse"
     ],
-    "persist": [
-        "settings",
-        "trainers"
-    ],
-    "shortcuts": [
-        [
-            "Game Cheats Manager.exe",
-            "Game Cheats Manager"
-        ]
-    ],
-    "checkver": {
-        "github": "https://github.com/dyang886/Game-Cheats-Manager"
-    },
+    "persist": ["settings", "trainers"],
+    "shortcuts": [["Game Cheats Manager.exe", "Game Cheats Manager"]],
+    "checkver": "github",
     "autoupdate": {
         "architecture": {
             "64bit": {

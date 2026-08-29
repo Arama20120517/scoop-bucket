@@ -3,13 +3,17 @@
     "description": "allows for the acceleration of mouse input in the raw input stream.",
     "homepage": "https://github.com/RawAccelOfficial/rawaccel",
     "license": "MIT",
-    "url": "https://github.com/RawAccelOfficial/rawaccel/releases/download/v1.7.1/RawAccel_v1.7.1.zip",
-    "hash": "770fe3ae0919ca3c4d412f58c985eb27f5434decad809f7e8206de4e8852eec4",
-    "extract_dir": "RawAccel",
     "notes": [
         "if you encounter the message \"it may be in use\" and the driver was uninstalled successfully, please restart your system and run the uninstaller again."
     ],
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/RawAccelOfficial/rawaccel/releases/download/v1.7.1/RawAccel_v1.7.1.zip",
+            "hash": "770fe3ae0919ca3c4d412f58c985eb27f5434decad809f7e8206de4e8852eec4"
+        }
+    },
     "pre_install": "if (!(Test-Path \"$persist_dir\\settings.json\")) { New-Item \"$dir\\settings.json\" | Out-Null }",
+    "extract_dir": "RawAccel",
     "installer": {
         "script": "Start-Process -FilePath \"$dir\\installer.exe\" -Wait -WorkingDirectory \"$dir\""
     },
@@ -18,10 +22,12 @@
     },
     "persist": ["settings.json"],
     "shortcuts": [["rawaccel.exe", "Raw Accel"]],
-    "checkver": {
-        "github": "https://github.com/RawAccelOfficial/rawaccel"
-    },
+    "checkver": "github",
     "autoupdate": {
-        "url": "https://github.com/RawAccelOfficial/rawaccel/releases/download/v$version/RawAccel_v$version.zip"
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/RawAccelOfficial/rawaccel/releases/download/v$version/RawAccel_v$version.zip"
+            }
+        }
     }
 }

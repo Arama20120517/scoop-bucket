@@ -1,28 +1,55 @@
 {
-    "version": "14.0.02",
-    "description": "Steam 商店与社区加速工具",
-    "homepage": "https://www.dogfight360.com/blog/18682/",
+    "version": "15.0.3",
+    "description": "Steam 商店与社区加速工具(WIP)",
+    "homepage": "https://www.dogfight360.com/blog/18682",
     "license": "Freeware",
-    "url": "https://www.dogfight360.com/blog/wp-content/uploads/2026/02/steamcommunity_302_AMD64_V14.0.02.zip",
-    "hash": "d911105fbf56a6cfcf0322e3feeb97a65a005bb9bfb2021aade45e8a11f9a8e8",
+    "architecture": {
+        "64bit": {
+            "url": "https://www.dogfight360.com/Usbeam/V15/Steamcommunity_302_15.0.3_Windows_x64.zip",
+            "hash": "9d2f3726e28bb60b53221cba71866102f490c4cdbd0aa15469511d4d68f6c6cf"
+        },
+        "arm64": {
+            "url": "https://www.dogfight360.com/Usbeam/V15/Steamcommunity_302_15.0.3_Windows_arm64.zip",
+            "hash": "316e69ad044723dd90f9f7cdad76085ead6655221622d7d9a6ad5328bab86136"
+        }
+    },
     "extract_dir": "Steamcommunity_302",
-    "pre_install": [
-        "$manifest.persist | ForEach-Object {",
-        "    if (!(Test-Path \"$persist_dir\\$_\")) { New-Item \"$dir\\$_\"| Out-Null }",
-        "}"
+    "pre_install": "if (!(is_admin)) { throw 'Admin privileges are required.' }",
+    "post_install": [
+        "if (Test-Path $env:ProgramData\\Steamcommunity_302) {",
+        "    Copy-Item -Path $env:ProgramData\\Steamcommunity_302\\* -Destination \"$persist_dir\\data\" -Force -Recurse",
+        "    Remove-Item $env:ProgramData\\Steamcommunity_302 -Force -Recurse",
+        "}",
+        "New-Item -ItemType Junction -Path $env:ProgramData\\Steamcommunity_302 -Target $persist_dir\\data | Out-Null"
     ],
-    "persist": [
-        "S302.ini",
-        "pac_user.txt",
-        "dns_blacklist.txt",
-        "dns_hosts.txt"
+    "pre_uninstall": "if (!(is_admin)) { throw 'Admin privileges are required.' }",
+    "post_uninstall": "Remove-Item $env:ProgramData\\Steamcommunity_302 -Force -Recurse",
+    "persist": "data",
+    "shortcuts": [
+        [
+            "steamcommunity_302.exe",
+            "SteamCommunity 302"
+        ]
     ],
-    "shortcuts": [["steamcommunity_302.exe", "SteamCommunity 302"]],
     "checkver": {
-        "url": "https://www.dogfight360.com/blog/18682",
-        "regex": "uploads/(?<date>[\\d/]+)/steamcommunity_302_AMD64_V([\\d.]+)\\.zip"
+        "regex": "Steamcommunity_302_([\\d.]+)_Windows_x64\\.zip"
     },
     "autoupdate": {
-        "url": "https://www.dogfight360.com/blog/wp-content/uploads/$matchDate/steamcommunity_302_AMD64_V$version.zip"
+        "architecture": {
+            "64bit": {
+                "url": "https://www.dogfight360.com/Usbeam/V$majorVersion/Steamcommunity_302_$version_Windows_x64.zip",
+                "hash": {
+                    "url": "https://www.dogfight360.com/blog/18682",
+                    "regex": "Steamcommunity_302_$version_Windows_x64\\.zip\\s+([a-fA-F0-9]{64})"
+                }
+            },
+            "arm64": {
+                "url": "https://www.dogfight360.com/Usbeam/V$majorVersion/Steamcommunity_302_$version_Windows_arm64.zip",
+                "hash": {
+                    "url": "https://www.dogfight360.com/blog/18682",
+                    "regex": "Steamcommunity_302_$version_Windows_arm64\\.zip\\s+([a-fA-F0-9]{64})"
+                }
+            }
+        }
     }
 }
