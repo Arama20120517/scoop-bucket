@@ -17,6 +17,14 @@ jobs:
         with:
           ref: main
 
+      - name: Sync script from extras bucket
+        run: Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ScoopInstaller/Extras/master/scripts/ModifyPSProfile.psm1" -OutFile "scripts\ModifyPSProfile.psm1"
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "chore(ModifyPSProfile): sync script from extras bucket"
+
       - name: Excavate
         uses: ScoopInstaller/GithubActions@5bceeda181721d9d10a18fdcc3ddca6f33467ae6 # main
         env:
