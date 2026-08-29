@@ -1,6 +1,6 @@
 {
     "version": "15.0.3",
-    "description": "Steam 商店与社区加速工具(WIP)",
+    "description": "Steam 商店与社区加速工具",
     "homepage": "https://www.dogfight360.com/blog/18682",
     "license": "Freeware",
     "architecture": {
@@ -16,21 +16,21 @@
     "extract_dir": "Steamcommunity_302",
     "pre_install": "if (!(is_admin)) { throw 'Admin privileges are required.' }",
     "post_install": [
-        "if (Test-Path $env:ProgramData\\Steamcommunity_302) {",
-        "    Copy-Item -Path $env:ProgramData\\Steamcommunity_302\\* -Destination \"$persist_dir\\data\" -Force -Recurse",
-        "    Remove-Item $env:ProgramData\\Steamcommunity_302 -Force -Recurse",
-        "}",
-        "New-Item -ItemType Junction -Path $env:ProgramData\\Steamcommunity_302 -Target $persist_dir\\data | Out-Null"
+        "if (Test-Path \"$persist_dir\\data\") {",
+        "    New-Item -ItemType Directory -Force -Path \"$env:ProgramData\\Steamcommunity_302\" | Out-Null",
+        "    Copy-Item -Path \"$persist_dir\\data\\*\" -Destination \"$env:ProgramData\\Steamcommunity_302\" -Force -Recurse",
+        "}"
     ],
     "pre_uninstall": "if (!(is_admin)) { throw 'Admin privileges are required.' }",
-    "post_uninstall": "Remove-Item $env:ProgramData\\Steamcommunity_302 -Force -Recurse",
-    "persist": "data",
-    "shortcuts": [
-        [
-            "steamcommunity_302.exe",
-            "SteamCommunity 302"
-        ]
+    "post_uninstall": [
+        "if (Test-Path \"$env:ProgramData\\Steamcommunity_302\") {",
+        "    New-Item -ItemType Directory -Force -Path \"$persist_dir\\data\" | Out-Null",
+        "    Copy-Item -Path \"$env:ProgramData\\Steamcommunity_302\\*\" -Destination \"$persist_dir\\data\" -Force -Recurse",
+        "}",
+        "Remove-Item $env:ProgramData\\Steamcommunity_302 -Force -Recurse"
     ],
+    "persist": "data",
+    "shortcuts": [["steamcommunity_302.exe", "SteamCommunity 302"]],
     "checkver": {
         "regex": "Steamcommunity_302_([\\d.]+)_Windows_x64\\.zip"
     },
