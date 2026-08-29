@@ -30,7 +30,7 @@
         "Remove-Item $env:ProgramData\\Steamcommunity_302 -Force -Recurse"
     ],
     "persist": "data",
-    "shortcuts": [["steamcommunity_302.exe", "SteamCommunity 302"]],
+    "shortcuts": [["Steamcommunity_302.exe", "SteamCommunity 302"]],
     "checkver": {
         "regex": "Steamcommunity_302_([\\d.]+)_Windows_x64\\.zip"
     },

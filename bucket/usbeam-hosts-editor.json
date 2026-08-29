@@ -10,12 +10,7 @@
         }
     },
     "extract_dir": "UsbEAm Hosts Editor",
-    "shortcuts": [
-        [
-            "UsbEAm Hosts Editor.exe",
-            "UsbEAm Hosts Editor"
-        ]
-    ],
+    "shortcuts": [["UsbEAm Hosts Editor.exe", "UsbEAm Hosts Editor"]],
     "checkver": {
         "regex": "/uploads/(?<year>\\d+)/(?<month>\\d+)/UsbEAm_Hosts_Editor_V([\\d.]+).zip"
     },
@@ -24,8 +19,8 @@
             "64bit": {
                 "url": "https://www.dogfight360.com/blog/wp-content/uploads/$matchYear/$matchMonth/UsbEAm_Hosts_Editor_V$version.zip",
                 "hash": {
-                    "url": "https://www.dogfight360.com/blog/18627/",
-                    "regex": "([a-fA-F0-9]{32}) +UsbEAm_Hosts_Editor_V$version\\.zip"
+                    "url": "https://www.dogfight360.com/blog/18627",
+                    "regex": "([a-fA-F0-9]{32})\\s+UsbEAm_Hosts_Editor_V$version\\.zip"
                 }
             }
         }
