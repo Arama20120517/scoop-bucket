@@ -21,7 +21,7 @@ jobs:
         run: Invoke-WebRequest -Uri "https://raw.githubusercontent.com/ScoopInstaller/Extras/master/scripts/ModifyPSProfile.psm1" -OutFile "scripts\ModifyPSProfile.psm1"
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v7
+        uses: stefanzweifel/git-auto-commit-action@4a55954c782fc1ea30b9056cd3e7a2b40ca8887d # v7
         with:
           commit_message: "chore(ModifyPSProfile): sync script from extras bucket"
 
