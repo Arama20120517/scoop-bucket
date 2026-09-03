@@ -4,8 +4,9 @@
     "homepage": "https://github.com/Arama20120517/scoop-accelerator",
     "license": "MIT",
     "notes": [
-        "运行以下命令以自动在 Powershell 中导入 scoop-accelerator:",
-        "$dir\\add-profile-content.ps1"
+        "如果需要安装 scoop-i18n, 请按照以下顺序安装, 卸载时请反转顺序: ",
+        "1. 安装 scoop-i18n",
+        "2. 安装 scoop-accelerator"
     ],
     "architecture": {
         "64bit": {
@@ -13,26 +14,30 @@
             "hash": "97f2ce0137e537bb86301ef630f960b7e70c09b74f23b34a5593f12ae9692ec0"
         }
     },
-    "post_install": [
-        "Import-Module scoop-accelerator",
-        "$BucketDir = Find-BucketDirectory -Root -Name $bucket",
-        "$UtilsPath = $BucketDir | Join-Path -ChildPath \"scripts\\ModifyPSProfile.psm1\"",
-        "if (Test-Path $UtilsPath) {",
-        "    Unblock-File $UtilsPath",
-        "    Import-Module $UtilsPath",
-        "    New-ProfileModifier -Type ImportModule -Name scoop-accelerator -BucketDir $BucketDir",
-        "    New-ProfileModifier -Type RemoveModule -Name scoop-accelerator -BucketDir $BucketDir",
-        "    Remove-Module ModifyPSProfile -ErrorAction SilentlyContinue",
-        "} else {",
-        "    throw '缺少文件, 请更新 bucket 并重新安装此应用.'",
+    "pre_install": [
+        "New-Item -ItemType Directory -Path \"$dir\\original\" -Force | Out-Null",
+        "New-Item -ItemType Directory -Path \"$dir\\shims\" -Force | Out-Null",
+        "$installI18N = Test-Path $(appdir 'abgox.scoop-i18n')",
+        "$scriptPath = \"$bucketsdir\\$bucket\\scripts\\$app\"",
+        "if ($installI18N) {",
+        "    $scriptPath = \"$bucketsdir\\$bucket\\scripts\\$app-i18n\"",
+        "}",
+        "Get-ChildItem $scriptPath | ForEach-Object {",
+        "    Move-Item \"$scoopdir\\shims\\$($_.Name)\" \"$dir\\original\"",
+        "    $content = Get-Content $_.FullName -Raw",
+        "    $content = $content.Replace('${scoop.ps1}', \"$scoopdir\\apps\\scoop\\current\\bin\\scoop.ps1\")",
+        "    if ($installI18N) {",
+        "       $content = $content.Replace('${scoop-i18n.ps1}', \"$(appdir 'abgox.scoop-i18n')\\current\\app\\scoop-i18n.ps1\")",
+        "    }",
+        "    [System.IO.File]::WriteAllText(\"$dir\\shims\\$($_.Name)\", ($content -join [System.Environment]::NewLine), [System.Text.UTF8Encoding]::new($false))",
+        "}",
+        "Get-ChildItem \"$dir\\shims\" | ForEach-Object {",
+        "    Copy-Item $_.FullName \"$scoopdir\\shims\" -Force",
         "}"
     ],
     "pre_uninstall": [
-        "Remove-Module scoop-accelerator -ErrorAction SilentlyContinue",
-        "$UtilsPath = Find-BucketDirectory -Root -Name $install.bucket | Join-Path -ChildPath \"scripts\\ModifyPSProfile.psm1\"",
-        "if (($cmd -eq 'uninstall') -and (Test-Path \"$dir\\remove-profile-content.ps1\") -and (Test-Path $UtilsPath)) {",
-        "    Unblock-File $UtilsPath",
-        "    & \"$dir\\remove-profile-content.ps1\"",
+        "Get-ChildItem \"$dir\\original\" | ForEach-Object {",
+        "    Move-Item $_.FullName \"$scoopdir\\shims\" -Force",
         "}"
     ],
     "psmodule": {
