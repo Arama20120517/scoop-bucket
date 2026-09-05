@@ -1,5 +1,5 @@
 {
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Scoop 下载加速器. 支持将 GitHub、SourceForge、Node.js 的请求重定向至国内高速镜像, 告别下载超时.",
     "homepage": "https://github.com/Arama20120517/scoop-accelerator",
     "license": "MIT",
@@ -10,8 +10,8 @@
     ],
     "architecture": {
         "64bit": {
-            "url": "https://v4.gh-proxy.org/https://github.com/Arama20120517/scoop-accelerator/releases/download/v1.1.0/scoop-accelerator.ps1",
-            "hash": "94453f87dc7d454d2012f71ffc2261ec9a21d97cf44db243596767ff6738cd8e"
+            "url": "https://v4.gh-proxy.org/https://github.com/Arama20120517/scoop-accelerator/releases/download/v1.1.1/scoop-accelerator.ps1",
+            "hash": "77c122818774a4bc0994dd65c2b388730424f7ed4fb6b127f98c62d45ff88e07"
         }
     },
     "pre_install": [
