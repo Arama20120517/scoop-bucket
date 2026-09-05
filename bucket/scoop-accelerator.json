@@ -43,7 +43,11 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://v4.gh-proxy.org/https://github.com/Arama20120517/scoop-accelerator/releases/download/v$version/scoop-accelerator.ps1"
+                "url": "https://v4.gh-proxy.org/https://github.com/Arama20120517/scoop-accelerator/releases/download/v$version/scoop-accelerator.ps1",
+                "hash": {
+                    "url": "https://api.github.com/repos/Arama20120517/scoop-accelerator/releases/tags/v$version",
+                    "jsonpath": "$.assets[?(@.name == 'scoop-accelerator.ps1')].digest"
+                }
             }
         }
     }
