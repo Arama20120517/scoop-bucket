@@ -17,17 +17,16 @@
     "pre_install": [
         "New-Item -ItemType Directory -Path \"$dir\\original\" -Force | Out-Null",
         "New-Item -ItemType Directory -Path \"$dir\\shims\" -Force | Out-Null",
-        "$installI18N = Test-Path $(appdir 'abgox.scoop-i18n')",
-        "$scriptPath = \"$bucketsdir\\$bucket\\scripts\\$app\"",
-        "if ($installI18N) {",
-        "    $scriptPath = \"$bucketsdir\\$bucket\\scripts\\$app-i18n\"",
-        "}",
-        "Get-ChildItem $scriptPath | ForEach-Object {",
+        "$isI18nInstalled = Test-Path $(appdir 'abgox.scoop-i18n')",
+        "Get-ChildItem \"$bucketsdir\\$bucket\\scripts\\$app\" | ForEach-Object {",
         "    Move-Item \"$scoopdir\\shims\\$($_.Name)\" \"$dir\\original\"",
         "    $content = Get-Content $_.FullName -Raw",
-        "    $content = $content.Replace('${scoop.ps1}', \"$scoopdir\\apps\\scoop\\current\\bin\\scoop.ps1\")",
-        "    if ($installI18N) {",
-        "       $content = $content.Replace('${scoop-i18n.ps1}', \"$(appdir 'abgox.scoop-i18n')\\current\\app\\scoop-i18n.ps1\")",
+        "    $content = $content.Replace('${scoop.ps1}', \". '$(appdir scoop)\\current\\bin\\scoop.ps1'\")",
+        "    $content = $content.Replace('${scoop-accelerator.ps1}', \". '$dir\\scoop-accelerator.ps1'\")",
+        "    if ($isI18nInstalled) {",
+        "        $content = $content.Replace('${scoop-i18n.ps1}', \". '$(appdir 'abgox.scoop-i18n')\\current\\app\\scoop-i18n.ps1'\")",
+        "    } else {",
+        "        $content = $content.Replace('${scoop-i18n.ps1}', '')",
         "    }",
         "    [System.IO.File]::WriteAllText(\"$dir\\shims\\$($_.Name)\", ($content -join [System.Environment]::NewLine), [System.Text.UTF8Encoding]::new($false))",
         "}",
@@ -40,14 +39,11 @@
         "    Move-Item $_.FullName \"$scoopdir\\shims\" -Force",
         "}"
     ],
-    "psmodule": {
-        "name": "scoop-accelerator"
-    },
     "checkver": "github",
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://v4.gh-proxy.org/https://github.com/Arama20120517/scoop-accelerator/releases/download/v$version/scoop-accelerator.psm1"
+                "url": "https://v4.gh-proxy.org/https://github.com/Arama20120517/scoop-accelerator/releases/download/v$version/scoop-accelerator.ps1"
             }
         }
     }
