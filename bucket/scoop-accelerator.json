@@ -31,7 +31,7 @@
     ],
     "pre_uninstall": [
         "if (installed 'abgox.scoop-i18n') {",
-        "    Copy-Item \"$(appdir 'abgox.scoop-i18n')\\current\\app\\shims\\*\" \"$scoopdir\\shims\" -Force -Bypass",
+        "    Microsoft.PowerShell.Management\\Copy-Item \"$(appdir 'abgox.scoop-i18n')\\current\\app\\shims\\*\" \"$scoopdir\\shims\" -Force",
         "} else {",
         "    Get-ChildItem \"$dir\\original\" | ForEach-Object {",
         "        Move-Item $_.FullName \"$scoopdir\\shims\" -Force",
