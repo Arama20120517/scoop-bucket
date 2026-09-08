@@ -3,6 +3,10 @@
     "description": "PawnIO is a scriptable universal kernel driver, allowing hardware access to a wide variety of programs.",
     "homepage": "https://pawnio.eu",
     "license": "MIT",
+    "suggest": {
+        "G-Helper (Experimental)": "g-helper-experimental",
+        "THRM": "thrm"
+    },
     "architecture": {
         "64bit": {
             "url": "https://github.com/namazso/PawnIO.Setup/releases/download/2.2.0/PawnIO_setup.exe",
@@ -10,10 +14,13 @@
         }
     },
     "installer": {
-        "script": "Start-Process -FilePath \"$dir\\PawnIO_setup.exe\" -ArgumentList '-install -silent' -Wait"
+        "file": "PawnIO_setup.exe",
+        "args": ["-install", "-silent"],
+        "keep": true
     },
     "uninstaller": {
-        "script": "Start-Process -FilePath \"$dir\\PawnIO_setup.exe\" -ArgumentList '-uninstall -silent' -Wait"
+        "file": "PawnIO_setup.exe",
+        "args": ["-uninstall", "-silent"]
     },
     "checkver": {
         "github": "https://github.com/namazso/PawnIO.Setup"

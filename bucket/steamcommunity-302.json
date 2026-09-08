@@ -13,8 +13,8 @@
             "hash": "3b07ca4d89d114874a5641da26ab518731d7ce33d6ae19e054370a6b07014f63"
         }
     },
-    "extract_dir": "Steamcommunity_302",
     "pre_install": "if (!(is_admin)) { throw 'Admin privileges are required.' }",
+    "extract_dir": "Steamcommunity_302",
     "post_install": [
         "if (Test-Path \"$persist_dir\\data\") {",
         "    New-Item -ItemType Directory -Force -Path \"$env:ProgramData\\Steamcommunity_302\" | Out-Null",
@@ -30,12 +30,7 @@
         "Remove-Item $env:ProgramData\\Steamcommunity_302 -Force -Recurse"
     ],
     "persist": "data",
-    "shortcuts": [
-        [
-            "Steamcommunity_302.exe",
-            "SteamCommunity 302"
-        ]
-    ],
+    "shortcuts": [["Steamcommunity_302.exe", "SteamCommunity 302"]],
     "checkver": {
         "regex": "Steamcommunity_302_([\\d.]+)_Windows_x64\\.zip"
     },
