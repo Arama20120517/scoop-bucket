@@ -1,12 +1,12 @@
 {
-    "version": "0.43",
+    "version": "0.44",
     "description": "a Windows utility for NVIDIA GPU tuning and monitoring.",
     "homepage": "https://github.com/b00nz/mVolt",
     "license": "Freeware",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/b00nz/mVolt/releases/download/v0.43/mVolt+.exe",
-            "hash": "1b7488e8f0311a6fe30f6697dc01fa45cda13cd16dc1189cce14192a9c54936c"
+            "url": "https://github.com/b00nz/mVolt/releases/download/v0.44/mVolt+.exe",
+            "hash": "1013d29bb381b64d7edab1d79c277871fb88fcc09c6cf9638ea1cc246473eaab"
         }
     },
     "pre_install": "if (!(is_admin)) { throw 'Admin privileges are required.' }",
