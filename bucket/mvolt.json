@@ -1,0 +1,52 @@
+{
+    "version": "0.43",
+    "description": "a Windows utility for NVIDIA GPU tuning and monitoring.",
+    "homepage": "https://github.com/b00nz/mVolt",
+    "license": "Freeware",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/b00nz/mVolt/releases/download/v0.43/mVolt+.exe",
+            "hash": "1b7488e8f0311a6fe30f6697dc01fa45cda13cd16dc1189cce14192a9c54936c"
+        }
+    },
+    "pre_install": "if (!(is_admin)) { throw 'Admin privileges are required.' }",
+    "post_install": [
+        "if (Test-Path $env:LOCALAPPDATA\\mVolt+) {",
+        "    Copy-Item -Path $env:LOCALAPPDATA\\mVolt+\\* -Destination \"$persist_dir\\data\" -Force -Recurse",
+        "    Remove-Item $env:LOCALAPPDATA\\mVolt+ -Force -Recurse",
+        "}",
+        "if (Test-Path $env:ProgramFiles\\mVolt+) {",
+        "    Copy-Item -Path $env:ProgramFiles\\mVolt+\\* -Destination \"$persist_dir\\startup\" -Force -Recurse",
+        "    Remove-Item $env:ProgramFiles\\mVolt+ -Force -Recurse",
+        "}",
+        "New-Item -ItemType Junction -Path $env:LOCALAPPDATA\\mVolt+ -Target $persist_dir\\data | Out-Null",
+        "New-Item -ItemType Junction -Path $env:ProgramFiles\\mVolt+ -Target $persist_dir\\startup | Out-Null"
+    ],
+    "pre_uninstall": "if (!(is_admin)) { throw 'Admin privileges are required.' }",
+    "post_uninstall": [
+        "Remove-Item $env:LOCALAPPDATA\\mVolt+ -Force -Recurse",
+        "Remove-Item $env:ProgramFiles\\mVolt+ -Force -Recurse"
+    ],
+    "persist": [
+        "data",
+        "startup"
+    ],
+    "shortcuts": [
+        [
+            "mVolt+.exe",
+            "mVolt"
+        ]
+    ],
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/b00nz/mVolt/releases/download/v$version/mVolt+.exe",
+                "hash": {
+                    "url": "https://api.github.com/repos/b00nz/mVolt/releases/tags/v$version",
+                    "jsonpath": "$.assets[?(@.name == 'mVolt+.exe')].digest"
+                }
+            }
+        }
+    }
+}
