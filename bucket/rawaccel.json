@@ -12,13 +12,17 @@
             "hash": "770fe3ae0919ca3c4d412f58c985eb27f5434decad809f7e8206de4e8852eec4"
         }
     },
-    "pre_install": "if (!(Test-Path \"$persist_dir\\settings.json\")) { New-Item \"$dir\\settings.json\" | Out-Null }",
+    "pre_install": [
+        "if (!(is_admin)) { throw 'Admin privileges are required.' }",
+        "if (!(Test-Path \"$persist_dir\\settings.json\")) { New-Item \"$dir\\settings.json\" | Out-Null }"
+    ],
     "extract_dir": "RawAccel",
     "installer": {
-        "script": "Start-Process -FilePath \"$dir\\installer.exe\" -Wait -WorkingDirectory \"$dir\""
+        "script": "Start-Process -FilePath \"$dir\\installer.exe\" -Wait -WorkingDirectory \"$dir\" -NoNewWindow"
     },
+    "pre_uninstall": "if (!(is_admin)) { throw 'Admin privileges are required.' }",
     "uninstaller": {
-        "script": "Start-Process -FilePath \"$dir\\uninstaller.exe\" -Wait -WorkingDirectory \"$dir\""
+        "script": "Start-Process -FilePath \"$dir\\uninstaller.exe\" -Wait -WorkingDirectory \"$dir\" -NoNewWindow"
     },
     "persist": ["settings.json"],
     "shortcuts": [["rawaccel.exe", "Raw Accel"]],
