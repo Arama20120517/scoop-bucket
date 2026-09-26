@@ -1,12 +1,12 @@
 {
-    "version": "3.0.23.10",
+    "version": "3.0.42.18",
     "description": "Allow you to update DLSS games and apps to use the latest DLSS models.",
     "homepage": "https://github.com/SimonMacer/AnWave/releases/tag/AnWave-DLSS",
     "license": "Freeware",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/SimonMacer/AnWave/releases/download/AnWave-DLSS/nvidiaDlssGlom-v3.0.23.10-20260926.rar",
-            "hash": "58ed040281f294d2e9ab42897428721f72dd9b3a4a177381d5d6968e69300377"
+            "url": "https://github.com/SimonMacer/AnWave/releases/download/AnWave-DLSS/nvidiaDlssGlom-v3.0.42.18-20260926.rar",
+            "hash": "d2553b10dd673052d05db7a31a75fb4decc0d6094e32e1018b00d36e46c05a2b"
         }
     },
     "extract_dir": "nvidiaDlssGlom",
