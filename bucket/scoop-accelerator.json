@@ -1,40 +1,37 @@
 {
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Scoop 下载加速器. 支持按照自定义规则进行重定向.",
     "homepage": "https://github.com/Arama20120517/scoop-accelerator",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://v4.gh-proxy.org/https://github.com/Arama20120517/scoop-accelerator/releases/download/v2.0.0/scoop-accelerator.ps1",
-            "hash": "1a200f00fbeca033e8920cdf6b88d9fa1b7da4304b578813d5af23a1d3aff96a"
+            "url": "https://v4.gh-proxy.org/https://github.com/Arama20120517/scoop-accelerator/releases/download/v2.0.1/scoop-accelerator.ps1",
+            "hash": "0e99c23d144f26fdb6f426d879703298c1364ed4d75b83df248abf2bbb0efb58"
         }
     },
     "notes": [
-        "使用以下命令设置规则:",
-        "scoop config scoop-accelerator-rule-github \"^https://github.com -> https://v4.gh-proxy.org/https://github.com\"",
-        "scoop config scoop-accelerator-rule-github-raw \"^https://raw.githubusercontent.com -> https://v4.gh-proxy.org/https://raw.githubusercontent.com\"",
-        "scoop config scoop-accelerator-rule-github-gist \"^https://gist.githubusercontent.com -> https://v4.gh-proxy.org/https://gist.githubusercontent.com\"",
-        "scoop config scoop-accelerator-rule-sourceforge \"^https://downloads.sourceforge.net -> https://v4.gh-proxy.org/sourceforge/https://downloads.sourceforge.net\"",
-        "scoop config scoop-accelerator-rule-nodejs \"^https://nodejs.org/dist/ -> https://registry.npmmirror.com/-/binary/node/\""
+        "使用以下命令设置推荐规则:",
+        ". \"$dir\\setup-rules.ps1\""
     ],
     "post_install": [
         "New-Item -ItemType Directory -Path \"$dir\\template\" -Force | Out-Null",
         "New-Item -ItemType Directory -Path \"$dir\\original\" -Force | Out-Null",
         "New-Item -ItemType Directory -Path \"$dir\\shims\" -Force | Out-Null",
-        "Get-ChildItem \"$bucketsdir\\$bucket\\scripts\\$app\" | ForEach-Object {",
+        "Get-ChildItem \"$bucketsdir\\$bucket\\scripts\\$app\\template\" | ForEach-Object {",
         "    Copy-Item $_.FullName \"$dir\\template\" -Force",
         "    Move-Item \"$scoopdir\\shims\\$($_.Name)\" \"$dir\\original\"",
         "}",
         ". \"$dir\\scoop-accelerator.ps1\"",
         "if (installed 'abgox.scoop-i18n') {",
         "    Copy-Item \"$(appdir 'abgox.scoop-i18n')\\current\\app\\original\\*\" \"$dir\\original\" -Force",
-        "    Update-Shims -EnableI18N",
+        "    Update-Shim -EnableI18N",
         "} else {",
-        "    Update-Shims",
+        "    Update-Shim",
         "}",
         "Get-ChildItem \"$dir\\shims\" | ForEach-Object {",
         "    Copy-Item $_.FullName \"$scoopdir\\shims\" -Force",
-        "}"
+        "}",
+        "Copy-Item \"$bucketsdir\\$bucket\\scripts\\$app\\setup-rules.ps1\" \"$dir\\setup-rules.ps1\""
     ],
     "pre_uninstall": [
         "if (installed 'abgox.scoop-i18n') {",
