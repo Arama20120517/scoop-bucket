@@ -1,6 +1,6 @@
 {
     "version": "1.2.4",
-    "description": "Scoop 下载加速器. 支持将 GitHub、SourceForge、Node.js 的请求重定向至国内高速镜像, 告别下载超时.",
+    "description": "Scoop 下载加速器. 支持按照自定义规则进行重定向.",
     "homepage": "https://github.com/Arama20120517/scoop-accelerator",
     "license": "MIT",
     "architecture": {
@@ -9,6 +9,14 @@
             "hash": "1d43a3bce45510065f80f5ddb6c5e3d0c2e94e4c2eb94be2cb5967dcc4d92c25"
         }
     },
+    "notes": [
+        "使用以下命令设置规则:",
+        "scoop config scoop-accelerator-rule-github \"^https://github.com -> https://v4.gh-proxy.org/https://github.com\"",
+        "scoop config scoop-accelerator-rule-github-raw \"^https://raw.githubusercontent.com -> https://v4.gh-proxy.org/https://raw.githubusercontent.com\"",
+        "scoop config scoop-accelerator-rule-github-gist \"^https://gist.githubusercontent.com -> https://v4.gh-proxy.org/https://gist.githubusercontent.com\"",
+        "scoop config scoop-accelerator-rule-sourceforge \"^https://downloads.sourceforge.net -> https://v4.gh-proxy.org/sourceforge/https://downloads.sourceforge.net\"",
+        "scoop config scoop-accelerator-rule-nodejs \"^https://nodejs.org/dist/ -> https://registry.npmmirror.com/-/binary/node/\""
+    ],
     "post_install": [
         "New-Item -ItemType Directory -Path \"$dir\\template\" -Force | Out-Null",
         "New-Item -ItemType Directory -Path \"$dir\\original\" -Force | Out-Null",
