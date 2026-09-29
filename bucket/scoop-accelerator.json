@@ -1,16 +1,16 @@
 {
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "Scoop 下载加速器. 支持按照自定义规则进行重定向.",
     "homepage": "https://github.com/Arama20120517/scoop-accelerator",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://v4.gh-proxy.org/https://github.com/Arama20120517/scoop-accelerator/releases/download/v2.0.1/scoop-accelerator.ps1",
-            "hash": "0e99c23d144f26fdb6f426d879703298c1364ed4d75b83df248abf2bbb0efb58"
+            "url": "https://v4.gh-proxy.org/https://github.com/Arama20120517/scoop-accelerator/releases/download/v2.0.2/scoop-accelerator.ps1",
+            "hash": "843c4996b78db071d6b8091384414a4d51395151153140aaab0966be1b0ff681"
         }
     },
     "notes": [
-        "使用以下命令设置推荐规则:",
+        "使用以下命令配置推荐规则:",
         ". \"$dir\\setup-rules.ps1\""
     ],
     "post_install": [
