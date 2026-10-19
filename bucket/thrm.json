@@ -1,13 +1,13 @@
 {
-    "version": "3.7.2",
+    "version": "3.7.3",
     "description": "Open-source controller for Flydigi BS-series laptop coolers, featuring smart fan curves, hardware monitoring, RGB control, profiles, and Windows/Linux support.",
     "homepage": "https://github.com/TIANLI0/THRM",
     "license": "MIT",
     "depends": "pawnio",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/TIANLI0/THRM/releases/download/v3.7.2/THRM-windows-portable.zip",
-            "hash": "013e90ee19956bcc189c401517503d0098e4244e31aeb8cbd59a6031ee2b5f0f"
+            "url": "https://github.com/TIANLI0/THRM/releases/download/v3.7.3/THRM-windows-portable.zip",
+            "hash": "1e8a7d1f25cc702260b4fed61abd83d0d68277f0c79bd6e7ba957fa067175c21"
         }
     },
     "post_install": [
