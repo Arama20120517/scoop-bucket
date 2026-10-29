@@ -1,6 +1,8 @@
-${scoop-accelerator.ps1}
-${scoop-i18n.ps1}
+# ${scoop.ps1}
 
-$path = Join-Path $PSScriptRoot '..\apps\scoop\current\bin\scoop.ps1'
-if ($MyInvocation.ExpectingInput) { $input | & $path @args } else { & $path @args }
+. "${scoop-i18n.ps1}"
+. "${scoop-accelerator.ps1}"
+
+$path = Join-Path $PSScriptRoot "..\apps\scoop\current\bin\scoop.ps1"
+if ($MyInvocation.ExpectingInput) { $input | & $path  @args } else { & $path  @args }
 exit $LASTEXITCODE

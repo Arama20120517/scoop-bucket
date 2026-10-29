@@ -9,14 +9,12 @@
             "hash": "30c244edca1c6b2298ac8f30301fcabee6c7f0e834db2c0f5357eb650a29ecb7"
         }
     },
-    "notes": [
-        "使用以下命令配置推荐规则:",
-        ". \"$dir\\setup-rules.ps1\""
-    ],
+    "notes": ["使用以下命令配置推荐规则:", ". \"$dir\\setup-rules.ps1\""],
     "post_install": [
         "New-Item -ItemType Directory -Path \"$dir\\template\" -Force | Out-Null",
         "New-Item -ItemType Directory -Path \"$dir\\original\" -Force | Out-Null",
         "New-Item -ItemType Directory -Path \"$dir\\shims\" -Force | Out-Null",
+        "New-Item -ItemType File -Path \"$dir\\scoop-i18n.ps1\" -Force | Out-Null",
         "Get-ChildItem \"$bucketsdir\\$bucket\\scripts\\$app\\template\" | ForEach-Object {",
         "    Copy-Item $_.FullName \"$dir\\template\" -Force",
         "    Move-Item \"$scoopdir\\shims\\$($_.Name)\" \"$dir\\original\"",
